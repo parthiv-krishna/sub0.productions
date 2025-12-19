@@ -1,0 +1,79 @@
+{
+  description = "Website for Sub0 Productions";
+
+  inputs = {
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+    };
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs =
+    { self, nixpkgs, ... }@inputs:
+    inputs.flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+        inherit (nixpkgs) lib;
+
+        treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs {
+          projectRootFile = "flake.nix";
+          programs.mdformat.enable = true;
+          programs.nixfmt.enable = true;
+          programs.taplo.enable = true;
+        };
+      in
+      {
+        formatter = treefmtEval.config.build.wrapper;
+
+        devShells.default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            hugo
+            treefmtEval.config.build.wrapper
+          ];
+        };
+
+        apps.default =
+          let
+            name = "sub0-productions-site-dev";
+          in
+          {
+            type = "app";
+            program = lib.getExe (
+              pkgs.writeShellApplication {
+                inherit name;
+                runtimeInputs = with pkgs; [
+                  hugo
+                ];
+                text = ''
+                  hugo server --buildDrafts --buildFuture --bind 0.0.0.0
+                '';
+              }
+            );
+          };
+
+        packages.default = pkgs.stdenv.mkDerivation {
+          name = "sub0-productions-site";
+          src = ./.;
+
+          buildInputs = with pkgs; [
+            hugo
+          ];
+
+          buildPhase = ''
+            hugo --minify
+          '';
+
+          installPhase = ''
+            cp -r public $out
+          '';
+        };
+      }
+    );
+}
