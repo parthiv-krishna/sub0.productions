@@ -39,6 +39,7 @@
           ];
         };
 
+        # development server
         apps.default =
           let
             name = "sub0-productions-site-dev";
@@ -58,6 +59,7 @@
             );
           };
 
+        # production site
         packages.default = pkgs.stdenv.mkDerivation {
           name = "sub0-productions-site";
           src = ./.;
@@ -74,6 +76,45 @@
             cp -r public $out
           '';
         };
+
+        # deploy production site
+        apps.deploy =
+          let
+            name = "sub0-productions-site-deploy";
+            site = self.packages.${system}.default;
+          in
+          {
+            type = "app";
+            program = lib.getExe (
+              pkgs.writeShellApplication {
+                inherit name;
+                runtimeInputs = with pkgs; [
+                  wrangler
+                ];
+                text = ''
+                  if [ -z "''${CLOUDFLARE_PROJECT_NAME:-}" ]; then
+                    echo "Error: CLOUDFLARE_PROJECT_NAME environment variable is not set"
+                    exit 1
+                  fi
+                  if [ -z "''${CLOUDFLARE_ACCOUNT_ID:-}" ]; then
+                    echo "Error: CLOUDFLARE_ACCOUNT_ID environment variable is not set"
+                    exit 1
+                  fi
+                  if [ -z "''${CLOUDFLARE_API_TOKEN:-}" ]; then
+                    echo "Error: CLOUDFLARE_API_TOKEN environment variable is not set"
+                    exit 1
+                  fi
+
+                  echo "Deploying to Cloudflare Pages..."
+                  wrangler pages deploy ${site} \
+                    --project-name="$CLOUDFLARE_PROJECT_NAME" \
+                    --commit-dirty=true
+
+                  echo "Deployment complete!"
+                '';
+              }
+            );
+          };
       }
     );
 }
