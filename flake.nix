@@ -106,12 +106,9 @@
                     exit 1
                   fi
 
-                  echo "Deploying to Cloudflare Pages..."
                   wrangler pages deploy ${site} \
                     --project-name="$CLOUDFLARE_PROJECT_NAME" \
                     --commit-dirty=true
-
-                  echo "Deployment complete!"
                 '';
               }
             );
