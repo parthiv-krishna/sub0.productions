@@ -36,6 +36,7 @@
           buildInputs = with pkgs; [
             hugo
             treefmtEval.config.build.wrapper
+            wrangler
           ];
         };
 

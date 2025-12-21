@@ -9,6 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Cleanup runner
+        run: rm -rf /opt/hostedtoolcache
+        
       - name: Checkout repository
         uses: actions/checkout@v4
 
