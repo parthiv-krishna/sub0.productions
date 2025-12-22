@@ -34,9 +34,9 @@
 
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
-            hugo
             treefmtEval.config.build.wrapper
             wrangler
+            zola
           ];
         };
 
@@ -51,10 +51,10 @@
               pkgs.writeShellApplication {
                 inherit name;
                 runtimeInputs = with pkgs; [
-                  hugo
+                  zola
                 ];
                 text = ''
-                  hugo server --buildDrafts --buildFuture --bind 0.0.0.0
+                  zola serve
                 '';
               }
             );
@@ -66,11 +66,12 @@
           src = ./.;
 
           buildInputs = with pkgs; [
-            hugo
+            zola
           ];
 
           buildPhase = ''
-            hugo --minify
+            export ZOLA_ENV=prod
+            zola build
           '';
 
           installPhase = ''
