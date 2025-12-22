@@ -10,10 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cleanup runner
-        run: rm -rf /opt/hostedtoolcache
+        run: rm -rf /opt/hostedtoolcache && df -h .
         
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
