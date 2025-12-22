@@ -24,6 +24,9 @@ jobs:
       - name: Check formatting
         run: nix fmt -- --ci
 
+      - name: Build site
+        run: nix build
+
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
