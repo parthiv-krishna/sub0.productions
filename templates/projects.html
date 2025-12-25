@@ -19,12 +19,5 @@
         {% endfor %}
     {% endfor %}
 
-    <h1>{{ trans(key="other", lang=lang) }}</h1>
-    {% for page in section.pages %}
-        {% if page.taxonomies.categories | length == 0 %}
-            {{ page_macros::project_listing(page=page) }}
-        {% endif %}
-    {% endfor %}
-
 </main>
 {% endblock content %}
