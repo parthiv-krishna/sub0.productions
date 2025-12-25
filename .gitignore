@@ -4,6 +4,3 @@ public
 
 # zola build
 processed_images
-
-# themes managed by nix
-themes
