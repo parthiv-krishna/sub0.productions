@@ -1,6 +1,6 @@
 # sub0.productions
 
-Website for Sub0 Productions
+Website for Sub0 Productions, built using [Zola](https://www.getzola.org/) and [Nix](https://nixos.org/), and based on the [Papaya theme](https://github.com/justint/papaya).
 
 ## Nix Apps / Packages
 

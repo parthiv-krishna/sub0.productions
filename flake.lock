@@ -34,27 +34,10 @@
         "type": "github"
       }
     },
-    "papaya": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1690521655,
-        "narHash": "sha256-93ErgsizcV9AqyThTf7crtvKcfrOOI1bYmsO7K7HRqM=",
-        "owner": "justint",
-        "repo": "papaya",
-        "rev": "6cc643808c43a23c74a508de9ee2d66834896a1f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "justint",
-        "repo": "papaya",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
-        "papaya": "papaya",
         "treefmt-nix": "treefmt-nix"
       }
     },

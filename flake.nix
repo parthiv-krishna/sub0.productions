@@ -8,10 +8,6 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
-    papaya = {
-      url = "github:justint/papaya";
-      flake = false;
-    };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,25 +40,6 @@
           ];
         };
 
-        # delete static/banner.jpg so it can be overwritten by custom image
-        packages.papaya-theme =
-          let
-            overriddenFiles = [
-              "static/banner.jpg"
-              "templates/404.html"
-            ];
-          in
-          pkgs.stdenv.mkDerivation {
-            name = "papaya-theme";
-            src = inputs.papaya;
-
-            installPhase = ''
-              mkdir -p $out
-              cp -r . $out/
-              ${lib.concatMapStringsSep "\n" (file: "rm -f $out/${file}") overriddenFiles}
-            '';
-          };
-
         # development server
         apps.default =
           let
@@ -77,11 +54,6 @@
                   zola
                 ];
                 text = ''
-                  # create writable local copy of papaya theme
-                  rm -rf themes/papaya
-                  mkdir -p themes
-                  cp -r ${self.packages.${system}.papaya-theme} themes/papaya
-                  chmod -R +w themes
                   zola serve
                 '';
               }
@@ -98,8 +70,6 @@
           ];
 
           buildPhase = ''
-            mkdir -p themes
-            ln -s ${self.packages.${system}.papaya-theme} themes/papaya
             export ZOLA_ENV=prod
             zola build
           '';

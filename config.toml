@@ -2,7 +2,6 @@ base_url = "https://sub0.productions/"
 default_language = "en"
 title = "sub0.productions"
 description = "recorded and live sound engineering for a cappella"
-theme = "papaya"
 
 taxonomies = [
   { name = "categories", feed = true },
@@ -23,6 +22,8 @@ last_name = ""
 locale = "en_US"
 gender = ""
 username = "sub0.productions"
+
+[extra.social]
 
 [languages.en.translations]
 projects = "projects"
