@@ -2,6 +2,7 @@ base_url = "https://sub0.productions/"
 default_language = "en"
 title = "sub0.productions"
 description = "recorded and live sound engineering for a cappella"
+compile_sass = true
 
 taxonomies = [
   { name = "categories", feed = true },
