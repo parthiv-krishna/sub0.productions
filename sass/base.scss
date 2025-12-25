@@ -471,6 +471,19 @@ figcaption {
     .project-details {
         flex: 1;
         min-width: 0;
+
+        header {
+            display: block;
+        }
+    }
+
+    .project-artist {
+        display: block;
+        font-size: 1em;
+        font-weight: normal;
+        color: var(--text-accent-color);
+        margin-top: 0.25em;
+        margin-bottom: 0.75em;
     }
 }
 
