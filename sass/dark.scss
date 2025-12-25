@@ -1,6 +1,6 @@
 @use "syntax-theme-dark";
 
-@mixin theme($theme: dark) {
+:root {
     --background-color: rgb(24, 24, 24);
     --header-background-color: rgb(28, 28, 28);
     --text-color: rgb(217, 217, 217);
@@ -13,10 +13,7 @@
     --icon-color: var(--text-color);
     --code-background: rgb(32, 32, 32);
     --table-header-background-color: var(--header-background-color);
-}
 
-:root {
-    @include theme($theme: dark);
     @include syntax-theme-dark.dark;
 }
 
