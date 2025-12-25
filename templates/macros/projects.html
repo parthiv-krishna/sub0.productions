@@ -1,24 +1,25 @@
 <!-- project listing macros -->
 {% macro project_listing(page) %}
-<article class="post-list">
+<article class="post-list project-listing">
     {% set album_cover = "/covers/" ~ page.slug ~ ".jpg" %}
     {% set album_cover_alt = page.title ~ " album cover" %}
 
-    <a href="{{ page.permalink }}">
+    <a href="{{ page.permalink }}" class="project-cover">
         <img src="{{ album_cover }}" alt="{{ album_cover_alt }}"/>
-        <header>
-            <h3>
-                {{ page.title }}
-            </h3>
-        </header>
-
-        {% if page.summary %}
-        <div class="content post-summary">
-            {{ page.summary | markdown | safe }}
-        </div>
-        {% endif %}
     </a>
-    {{ self::project_info(page=page) }}
+    <div class="project-details">
+        <a href="{{ page.permalink }}">
+            <header>
+                <h3>{{ page.title }}</h3>
+            </header>
+            {% if page.summary %}
+            <div class="content post-summary">
+                {{ page.summary | markdown | safe }}
+            </div>
+            {% endif %}
+        </a>
+        {{ self::project_info(page=page) }}
+    </div>
 </article>
 {% endmacro project_listing %}
 
