@@ -1,14 +1,11 @@
 {% import "macros/page.html" as page_macros %}
 {% extends "base.html" %}
 
-{% block title %}{{ trans(key="projects", lang=lang) }} - {{ config.title }}{% endblock title %}
+{% block title %}projects | {{ config.title }}{% endblock title %}
 
 {% block content %}
 <main id="main" tabindex="-1">
-    {% set project_categories = load_data(path="content/projects/categories." ~ lang ~ ".json", required=false) %}
-    {% if not project_categories %}
-        {% set project_categories = load_data(path="content/projects/categories.json") %}
-    {% endif %}
+    {% set project_categories = load_data(path="content/projects/categories.json") %}
 
     {% for category, tag in project_categories %}
         <h1>{{ category }}</h1>

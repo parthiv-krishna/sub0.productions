@@ -1,18 +1,13 @@
 {% import "macros/page.html" as page_macros %}
 {% extends "base.html" %}
 
-{% block title %}{{ trans(key="blog", lang=lang) }} - {{ config.title }}{% endblock title %}
+{% block title %}blog | {{ config.title }}{% endblock title %}
 
 {% block content %}
 <main id="main" tabindex="-1">
     {% block heading %}
     <p>
-        {% if section.relative_path is ending_with("." ~ lang ~ ".md") %}
-            {% set tags_url = "/" ~ lang ~ "/tags" %}
-        {% else %}
-            {% set tags_url = "/tags" %}
-        {% endif %}
-        {{ trans(key="view_by", lang=lang) }}: <a href={{ tags_url }}>{{ trans(key="tags", lang=lang) }}</a>
+        view by: <a href="/tags">tags</a>
     </p>
     {% endblock heading %}
     {% if paginator.pages %}

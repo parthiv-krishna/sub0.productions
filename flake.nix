@@ -70,7 +70,6 @@
           ];
 
           buildPhase = ''
-            export ZOLA_ENV=prod
             zola build
           '';
 

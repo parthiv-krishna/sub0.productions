@@ -1,10 +1,10 @@
 {% import "macros/page.html" as page_macros %}
 {% extends "index.html" %}
 
-{% block title %}{{ trans(key="tags", lang=lang) }} - {{ config.title }}{% endblock title%}
+{% block title %}tags - {{ config.title }}{% endblock title%}
 
 {% block content %}
-<h1>{{ trans(key="tags", lang=lang) }}</h1>
+<h1>tags</h1>
 
 <ul class="terms">
     {% for term in terms %}

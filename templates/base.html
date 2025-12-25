@@ -1,7 +1,5 @@
-{% import "macros/social.html" as social_macros %}
-
 <!DOCTYPE html>
-<html lang="{% if lang %}{{ lang }}{% else %}en{% endif %}" prefix="og: http://ogp.me/ns#">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="HandheldFriendly" content="True">
@@ -14,17 +12,9 @@
     <link rel="stylesheet" href="{{ get_url(path="base.css", trailing_slash=false) }}">
     <link rel="stylesheet" href="{{ get_url(path="dark.css", trailing_slash=false) }}">
 
-    <link rel="preload" href={{ config.extra.cdn.font_awesome }} as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href={{ config.extra.cdn.font_awesome }}></noscript>
-
     {% if config.generate_feed %}
     <link rel="alternate" type={% if config.feed_filename == "atom.xml" %}"application/atom+xml"{% else %}"application/rss+xml"{% endif %} title="RSS" href="{{ get_url(path=config.feed_filename) | safe }}">
     {% endif %}
-
-    {% block ogp_head %}
-    <meta property="og:title" content="{{ config.title }}">
-    <meta property="og:type" content="website">
-    {% endblock ogp_head %}
 
     {% block extra_head %}
     {% endblock extra_head %}
@@ -32,17 +22,15 @@
 <body>
 <div class="container">
     {% block header %}
-    {% set base_url = get_url(path="", lang=lang) %}
     <header>
         <h1 class="site-header">
-            <a href="{{ base_url }}">{{ config.title }}</a>
+            <a href="/">{{ config.title }}</a>
         </h1>
         <nav>
             <ul>
             {% block nav_bar %}
             {% for subsec in config.extra.menu_items %}
-                {% set link_url = subsec.url | replace(from="$BASE_URL", to=config.base_url) | replace(from="$LANG_BASE_URL", to=base_url) %}
-                <li><a {% if current_url and current_url is starting_with(link_url) %}class="active"{% endif %} href="{{ link_url }}">{{ trans(key=subsec.name, lang=lang) }}</a></li>
+                <li><a {% if current_url and current_url is starting_with(subsec.url) %}class="active"{% endif %} href="{{ subsec.url }}">{{ subsec.name }}</a></li>
             {% endfor %}
             {% endblock nav_bar %}
             </ul>
@@ -52,9 +40,6 @@
     {% block content %}
     {% endblock content %}
     <footer>
-        <p>
-            {{ social_macros::social_links(social_config=config.extra.social) }}
-        </p>
         <p>
             {% block footer %}
             {% endblock footer %}

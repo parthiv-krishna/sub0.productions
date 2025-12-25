@@ -9,23 +9,7 @@ taxonomies = [
 ]
 
 [extra]
-cdn.font_awesome = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
 menu_items = [
-  { name = "about", url = "$LANG_BASE_URL/about" },
-  { name = "projects", url = "$LANG_BASE_URL/projects" },
+  { name = "about", url = "/about" },
+  { name = "projects", url = "/projects" },
 ]
-
-[extra.ogp]
-first_name = "sub0.productions"
-last_name = ""
-locale = "en_US"
-gender = ""
-username = "sub0.productions"
-
-[extra.social]
-
-[languages.en.translations]
-projects = "projects"
-recent_projects = "recent projects"
-more_projects = "more projects"
-about = "about"
