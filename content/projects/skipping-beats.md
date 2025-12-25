@@ -8,4 +8,6 @@ tags = ["recording"]
 
 [extra]
 artist = "Stanford Mixed Company"
+spotify = "10wQXnLgR660gzDQus4YcI"
+apple_music = "skipping-beats-single/1743046135"
 +++
