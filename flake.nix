@@ -45,16 +45,23 @@
         };
 
         # delete static/banner.jpg so it can be overwritten by custom image
-        packages.papaya-theme = pkgs.stdenv.mkDerivation {
-          name = "papaya-theme";
-          src = inputs.papaya;
+        packages.papaya-theme =
+          let
+            overriddenFiles = [
+              "static/banner.jpg"
+              "templates/404.html"
+            ];
+          in
+          pkgs.stdenv.mkDerivation {
+            name = "papaya-theme";
+            src = inputs.papaya;
 
-          installPhase = ''
-            mkdir -p $out
-            cp -r . $out/
-            rm -f $out/static/banner.jpg
-          '';
-        };
+            installPhase = ''
+              mkdir -p $out
+              cp -r . $out/
+              ${lib.concatMapStringsSep "\n" (file: "rm -f $out/${file}") overriddenFiles}
+            '';
+          };
 
         # development server
         apps.default =

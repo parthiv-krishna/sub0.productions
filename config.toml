@@ -1,9 +1,32 @@
 base_url = "https://sub0.productions/"
-default_language = "en-us"
+default_language = "en"
 title = "sub0.productions"
+description = "recorded and live sound engineering for a cappella"
 theme = "papaya"
+
+taxonomies = [
+  { name = "categories", feed = true },
+  { name = "tags", feed = true },
+]
 
 [extra]
 cdn.font_awesome = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
 color_mode = "dark"
-menu_items = []
+menu_items = [
+  { name = "about", url = "$LANG_BASE_URL/about" },
+  { name = "projects", url = "$LANG_BASE_URL/projects" },
+]
+
+[extra.ogp]
+first_name = "sub0.productions"
+last_name = ""
+locale = "en_US"
+gender = ""
+username = "sub0.productions"
+
+[languages.en.translations]
+projects = "projects"
+recent_projects = "recent projects"
+more_projects = "more projects"
+about = "about"
+other = "other"
