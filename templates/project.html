@@ -1,0 +1,9 @@
+{% extends "page.html" %}
+
+{% block featured_image %}
+    {% set album_cover_path = "static/covers/" ~ page.slug ~ ".jpg" %}
+    {% set album_cover_alt = page.title ~ " album cover" %}
+    {% set container_width = 16 * 42 %}
+    {% set resized_album_cover = resize_image(path=album_cover_path, width=container_width, op="fit_width") %}
+    <img src="{{ resized_album_cover.url }}" alt="{{ album_cover_alt }}"/>
+{% endblock featured_image %}

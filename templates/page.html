@@ -6,6 +6,7 @@
 {% block content %}
 
 <article class="post">
+    {% block featured_image %}
     {% if page.extra.featured_image %}
         {% if page.extra.featured_image is starting_with("/") %}
             {% set image_path = "static" ~ page.extra.featured_image %}
@@ -22,6 +23,7 @@
         {% endif %}
     <img src="{{ resized_featured_image.url }}" class="{% if page.extra.featured_image_extended %}extended-img{% endif %}" alt="{% if page.extra.featured_image_alt %}{{ page.extra.featured_image_alt }}{% else %}{{ page.title }}{% endif %}"/>
     {% endif %}
+    {% endblock featured_image %}
     {#
         Currently there's no way to get the page content without the summary included;
         below is a bit of a hack to separate out the two so that the summary can be

@@ -1,4 +1,4 @@
-{% import "macros/page.html" as page_macros %}
+{% import "macros/projects.html" as project_macros %}
 {% extends "base.html" %}
 
 {% block title %}projects | {{ config.title }}{% endblock title %}
@@ -11,7 +11,7 @@
         <h1>{{ category }}</h1>
         {% for page in section.pages %}
             {% if page.taxonomies.categories is containing(tag) %}
-                {{ page_macros::project_listing(page=page) }}
+                {{ project_macros::project_listing(page=page) }}
             {% endif %}
         {% endfor %}
     {% endfor %}
