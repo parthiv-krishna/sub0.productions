@@ -2,8 +2,7 @@
 {% macro page_info(page) %}
     <div class="article-info">
         {% if page.date %}
-        {% set reading_time = "◦ " ~ page.reading_time ~ " min" %}
-        <div class="article-date">{{ page.date | date(format="%b %d, %Y") }} {{ reading_time }} ◦ </div>
+        <div class="article-date">{{ page.date | date(format="%b %d, %Y") }} ◦ </div>
         {% endif %}
         <div class="article-taxonomies">
             {% if page.taxonomies.categories %}
