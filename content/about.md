@@ -8,4 +8,4 @@ For studio tracks, I generally work on recording and editing. I've overseen mult
 
 For live performances, I've organized all aspects of 10+ productions, from sound/lighting equipment acquisition to live mixing/lighting/livestreaming.
 
-Projects I've worked on have been recognized on _Voices Only_, selected as Recorded A Cappella Review Board Album of the Year, and featured as Recorded A Cappella Review Board Track of the Year.
+Projects I've worked on have been recognized on _Voices Only_, _Best of College A Cappella_, acclaimed by the Recorded A Cappella Review Board, and recognized at the Contemporary A Cappella Recording Awards.
